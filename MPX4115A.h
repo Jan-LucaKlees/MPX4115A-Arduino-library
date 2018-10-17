@@ -15,6 +15,7 @@ class MPX4115A {
     double readKPa();
     double readMBar();
     double readMmHg();
+    double readVcc();
   private:
     uint8_t _pin, _type;
     Vcc* _vcc;

@@ -41,3 +41,11 @@ double MPX4115A::readMBar() {
 double MPX4115A::readMmHg() {
   return readKPa() * 7.5;
 }
+
+/**
+ * Function for reading out the Vcc as calculated by the Vcc library.
+ * Use this function to calculate the Vcc correction to get more accurate measurements.
+ */
+double MPX4115A::readVcc() {
+  return _vcc->Read_Volts();
+}
