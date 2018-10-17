@@ -1,7 +1,8 @@
 /*
-  MPX.h - Library for reading preassure values from MPX type sensors.
+  MPX4115A.h - Library for reading preassure values from MPX4115A type sensors.
   Created by Jan-Luca Klees, 2018-10-17
 */
+
 #ifndef MPX4115A_H
 #define MPX4115A_H
 
