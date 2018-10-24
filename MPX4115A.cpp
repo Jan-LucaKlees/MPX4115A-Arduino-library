@@ -25,13 +25,7 @@ MPX4115A::MPX4115A(uint8_t pin, double vccCorrection) {
  * As we connect the sensor to our Arduino, Vs will be equal to the Vcc.
  */
 double MPX4115A::readKPa() {
-  double vcc;
-  double vout;
-
-  vcc = _vcc->Read_Volts();
-  vout = ( analogRead( _pin ) / 1024.0 ) * vcc;
-
-  return ( ( vout / vcc ) + 0.095 ) / 0.009;
+  return ( ( readVout() / readVcc() ) + 0.095 ) / 0.009;
 }
 
 double MPX4115A::readMBar() {
@@ -44,8 +38,17 @@ double MPX4115A::readMmHg() {
 
 /**
  * Function for reading out the Vcc as calculated by the Vcc library.
- * Use this function to calculate the Vcc correction to get more accurate measurements.
+ * Use this function to calculate the Vcc correction to get more accurate
+ * measurements.
  */
 double MPX4115A::readVcc() {
   return _vcc->Read_Volts();
+}
+
+/**
+ * Function for reading out the Vout, meaning the actual analog value outputted
+ * by the  MPX4115A pressure sensor.
+ */
+double MPX4115A::readVout() {
+  return ( analogRead( _pin ) / 1023.0 ) * readVcc();
 }
